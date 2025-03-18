@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from 'axios'
 
 const Signup = () => {
     const [formData, setFormData] = useState({
@@ -13,7 +14,9 @@ const Signup = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log("Form Data:", formData);
+        axios.post('"mongodb+srv://BharatVerma:Bharat123@database.0khb2.mongodb.net/?retryWrites=true&w=majority&appName=Database"', formData)
+            .then((res) => console.log(res))
+            .catch((err) => console.log(err))
     };
 
     return (
@@ -55,7 +58,7 @@ const Signup = () => {
                             </button>
                         </form>
                         <p className="text-center mt-3">
-                            Already have an account? <a href="/login">Login</a>
+                            Already have an account? <a href="/Login">Login</a>
                         </p>
                     </div>
                 </div>
