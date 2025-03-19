@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from "axios";
 
 const Login = () => {
     const [formData, setFormData] = useState({
@@ -10,9 +11,23 @@ const Login = () => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log("Login Data:", formData);
+        try {
+            const res = await axios.post("http://localhost:5000/login", formData, {
+                headers: { "Content-Type": "application/json" },
+            });
+
+            console.log("Response:", res.data);
+
+            // Store the token in localStorage or sessionStorage
+            localStorage.setItem("token", res.data.token);
+
+            alert("Login successful!");
+        } catch (err) {
+            console.error("Error:", err.response?.data || err.message);
+            alert("Login failed. Please try again.");
+        }
     };
 
     return (

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import axios from 'axios'
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Signup = () => {
     const [formData, setFormData] = useState({
@@ -12,11 +13,24 @@ const Signup = () => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
-    const handleSubmit = (e) => {
+    const navigate = useNavigate();
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        axios.post('"mongodb+srv://BharatVerma:Bharat123@database.0khb2.mongodb.net/?retryWrites=true&w=majority&appName=Database"', formData)
-            .then((res) => console.log(res))
-            .catch((err) => console.log(err))
+
+        try {
+            const res = await axios.post("http://localhost:5000/register", formData, {
+                headers: { "Content-Type": "application/json" },
+            });
+
+            navigate("/login");
+            console.log("Response:", res.data);
+
+            alert("Signup successful!");
+        } catch (err) {
+            console.error("Error:", err.response?.data || err.message);
+            alert("Signup failed. Please try again.");
+        }
     };
 
     return (
