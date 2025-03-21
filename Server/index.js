@@ -35,6 +35,9 @@ app.post("/register", async (req, res) => {
 });
 
 // Login Route (Without Password Hashing)
+app.get("/", (req, res) => {
+    res.send("Hello, World!");
+});
 app.post("/login", async (req, res) => {
     try {
         const { email, password } = req.body;
