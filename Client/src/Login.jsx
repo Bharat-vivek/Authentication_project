@@ -14,7 +14,7 @@ const Login = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const res = await axios.post("https://sangharsh-project-backend.onrender.com/login", formData, {
+            const res = await axios.post("http://localhost:5000/login", formData, {
                 headers: { "Content-Type": "application/json" },
             });
 

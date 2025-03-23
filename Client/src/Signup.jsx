@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Signup = () => {
     const [formData, setFormData] = useState({
@@ -7,6 +8,8 @@ const Signup = () => {
         email: "",
         password: "",
     });
+
+    const navigate = useNavigate();
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -16,12 +19,15 @@ const Signup = () => {
         e.preventDefault();
 
         try {
-            const res = await axios.post("https://sangharsh-project-backend.onrender.com/register", formData, {
+            const res = await axios.post("http://localhost:5000/register", formData, {
                 headers: { "Content-Type": "application/json" },
             });
 
             console.log("Response:", res.data);
             alert("Signup successful!");
+
+            // ✅ Redirect to login page after successful signup
+            navigate("/login");
         } catch (err) {
             console.error("Error:", err.response?.data || err.message);
             alert("Signup failed. Please try again.");
@@ -67,7 +73,7 @@ const Signup = () => {
                             </button>
                         </form>
                         <p className="text-center mt-3">
-                            Already have an account? <a href="/Login">Login</a>
+                            Already have an account? <a href="/login">Login</a>
                         </p>
                     </div>
                 </div>
