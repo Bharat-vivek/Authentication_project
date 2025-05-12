@@ -1,12 +1,122 @@
-# React + Vite
+# MERN Authentication Project
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A full-stack authentication system built with the MERN stack (MongoDB, Express.js, React, Node.js).
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- User Registration
+- User Login
+- JWT (JSON Web Token) Authentication
+- Protected Routes
+- MongoDB Database Integration
+- React Router for Navigation
+- Bootstrap for Styling
+- RESTful API Architecture
 
-## Expanding the ESLint configuration
+## Project Structure
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```
+Authentication_project/
+├── Client/                 # Frontend React application
+│   ├── src/
+│   │   ├── App.jsx        # Main React component
+│   │   ├── Login.jsx      # Login component
+│   │   ├── Signup.jsx     # Registration component
+│   │   └── main.jsx       # React entry point
+│   └── package.json       # Frontend dependencies
+│
+└── Server/                # Backend Node.js application
+    ├── Model/
+    │   └── userModel.js   # User database schema
+    ├── db/
+    │   └── index.js       # Database connection
+    ├── index.js           # Server entry point
+    └── package.json       # Backend dependencies
+```
+
+## Technology Stack
+
+### Frontend
+- React.js
+- React Router DOM
+- Axios for API calls
+- Bootstrap for styling
+- Vite for build tooling
+
+### Backend
+- Node.js
+- Express.js
+- MongoDB with Mongoose
+- JWT for authentication
+- bcryptjs (to be implemented)
+- CORS support
+
+## Setup Instructions
+
+1. Clone the repository:
+```bash
+git clone <repository-url>
+```
+
+2. Install Backend Dependencies:
+```bash
+cd Server
+npm install
+```
+
+3. Install Frontend Dependencies:
+```bash
+cd Client
+npm install
+```
+
+4. Set up Environment Variables:
+Create a `.env` file in the Server directory with:
+```
+DB_URL=your_mongodb_connection_string
+PORT=5000
+JWT_SECRET=your_jwt_secret
+```
+
+5. Start the Backend Server:
+```bash
+cd Server
+npm start
+```
+
+6. Start the Frontend Development Server:
+```bash
+cd Client
+npm run dev
+```
+
+## API Endpoints
+
+- `POST /register` - User registration
+- `POST /login` - User authentication
+- `GET /` - Test route
+
+## Security Considerations
+
+Current Implementation:
+- JWT-based authentication
+- CORS configuration
+- Password length validation
+
+To Be Implemented:
+- Password hashing with bcrypt
+- Input sanitization
+- Rate limiting
+- HTTPS support
+
+## Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## License
+
+This project is licensed under the ISC License.
